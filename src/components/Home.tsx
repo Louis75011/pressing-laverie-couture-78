@@ -53,24 +53,16 @@ function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative lg:h-[600px] flex items-center justify-center lg:justify-end"
           >
-            {/* Geometric representation of a pressing shop */}
+            {/* Professional image */}
             <div className="relative w-full max-w-md aspect-square bg-teal-light border border-teal/20 p-8 flex flex-col items-center justify-center relative overflow-hidden">
                <div className="absolute top-0 right-0 w-32 h-32 bg-teal/10 rounded-bl-full"></div>
                <div className="absolute bottom-0 left-0 w-48 h-48 bg-navy/5 rounded-tr-full"></div>
-               
-               <div className="relative z-10 w-48 h-64 border-2 border-navy flex flex-col">
-                  <div className="h-12 border-b-2 border-navy flex items-center justify-center">
-                    <div className="w-16 h-2 bg-navy rounded-full"></div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-center justify-around py-4">
-                     <div className="w-24 h-16 border border-navy rounded-t-3xl border-b-0 relative">
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 border border-navy rounded-full"></div>
-                     </div>
-                     <div className="w-32 h-16 border-t-2 border-dashed border-teal flex items-center justify-center">
-                        <Sparkles className="w-8 h-8 text-teal" />
-                     </div>
-                  </div>
-               </div>
+               <img 
+                 src="https://i.ibb.co/YBvD8Hfy/stephane-fialip-pro.jpg" 
+                 alt="Stéphane Fialip, artisan pressing" 
+                 className="relative z-10 w-full h-full object-cover shadow-sm grayscale hover:grayscale-0 transition-all duration-700"
+                 referrerPolicy="no-referrer"
+               />
             </div>
           </motion.div>
         </div>
