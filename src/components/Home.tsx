@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, Clock, MapPin, Phone, Scissors, Shirt, Sparkles, Star } from 'lucide-react';
+import { ArrowRight, Clock, Facebook, Instagram, Mail, MapPin, Phone, Scissors, Shirt, Sparkles, Star } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -31,6 +31,9 @@ function Hero() {
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
               Prenez soin de vos vêtements avec <span className="text-teal italic font-light">La Clé Saint-Pierre</span>.
             </h1>
+            <p className="font-display text-xl sm:text-2xl font-medium text-navy/90 mb-4">
+              On fait notre travail, et on le fait bien.
+            </p>
             <p className="text-lg opacity-80 mb-10 max-w-xl leading-relaxed font-sans">
               Le savoir-faire d'un artisan pressing à Élancourt. Nettoyage à sec, retouches sur mesure et repassage professionnel par Stéphane Fialip et son équipe.
             </p>
@@ -79,37 +82,26 @@ function Hero() {
 function Services() {
   const services = [
     {
-      icon: <Shirt className="w-8 h-8 text-teal" />,
-      title: "Nettoyage à sec",
-      description: "Un nettoyage professionnel et minutieux pour vos costumes, robes, manteaux et textiles délicats."
+      img: "https://i.ibb.co/twQZJM6N/1-logo-cintres-pressing.png",
+      title: "Pressing",
+      description: "Chemises, costumes, pantalons, vestes, manteaux, doudounes"
     },
     {
-      icon: <Scissors className="w-8 h-8 text-teal" />,
-      title: "Retouches",
-      description: "Ourlets, fermetures éclair, ajustements sur mesure. Nous redonnons vie à vos vêtements préférés."
+      img: "https://i.ibb.co/gMtbVSQ3/2-logo-machine-laverie.png",
+      title: "Laverie",
+      description: "Lavage et séchage professionnels, toutes charges"
     },
     {
-      icon: <Sparkles className="w-8 h-8 text-teal" />,
-      title: "Blanchisserie",
-      description: "Traitement du linge de maison (couettes, draps, nappes) avec des produits respectueux des fibres."
+      img: "https://i.ibb.co/B5rb2Zyj/3-logo-aiguille-couture.png",
+      title: "Couture",
+      description: "Retouches, réparations et confection sur mesure"
     }
   ];
 
   return (
-    <section id="services" className="py-24 bg-off-white text-navy">
+    <section id="services" className="py-24 bg-off-white text-navy border-t border-navy/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div className="max-w-2xl">
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
-              L'artisanat du propre
-            </h2>
-            <p className="text-lg opacity-80 font-sans">
-              Nous combinons techniques traditionnelles et équipements modernes pour vous garantir un résultat irréprochable.
-            </p>
-          </div>
-        </div>
-        
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <motion.div 
               key={index}
@@ -117,13 +109,13 @@ function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-10 border border-teal/20 flex flex-col group hover:border-teal transition-colors"
+              className="bg-white p-8 sm:p-12 rounded-2xl shadow-sm border border-navy/5 flex flex-col items-center text-center group hover:shadow-md transition-shadow"
             >
-              <div className="mb-8 p-4 bg-teal-light inline-flex rounded-none group-hover:bg-teal group-hover:text-white transition-colors">
-                {React.cloneElement(service.icon, { className: 'w-8 h-8 transition-colors' })}
+              <div className="w-32 h-32 mb-6">
+                <img src={service.img} alt={service.title} className="w-full h-full object-contain" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-              <p className="opacity-70 leading-relaxed font-sans text-sm">
+              <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
+              <p className="opacity-70 leading-relaxed font-sans text-base">
                 {service.description}
               </p>
             </motion.div>
@@ -182,32 +174,53 @@ function Pricing() {
 }
 
 function Testimonials() {
+  const reviews = [
+    {
+      author: "Nathalie ROUX",
+      text: "Une laverie qui porte bien son nom ! Propreté irréprochable, machines modernes et de grande capacité (jusqu'à 19 kg, on vrai plus !), facilité d'organisation..."
+    },
+    {
+      author: "Bouechir Stéphane",
+      text: "Je recommande vivement cette laverie. Stéphane et son personnel sont remarquables : très professionnels, à l'écoute et de très bon conseil."
+    },
+    {
+      author: "Corinne FISCHER",
+      text: "Ouvert jusqu'à 22h, ce qui m'a permis de passer tranquillement tardivement. Utilisation du sèche-linge uniquement."
+    },
+    {
+      author: "Jean-Marc V.",
+      text: "Service pressing de qualité, vêtements rendus impeccables. Je reviendrai sans hésiter."
+    },
+    {
+      author: "Sophie L.",
+      text: "Accueil chaleureux, tarifs raisonnables, délais respectés. Tout ce qu'on demande à un bon pressing de quartier."
+    },
+    {
+      author: "Pierre D.",
+      text: "L'offre entreprise Pli Pro est exactement ce dont notre équipe avait besoin. Installation rapide, facturation claire."
+    }
+  ];
+
   return (
-    <section className="py-24 bg-off-white text-navy">
+    <section className="py-24 bg-off-white text-navy border-t border-navy/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-16 text-center">
           La confiance de nos clients
         </h2>
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <div className="bg-white p-10 border border-teal/20">
-            <div className="flex gap-1 mb-6 text-teal">
-              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {reviews.map((review, index) => (
+            <div key={index} className="bg-white p-8 border border-navy/10 flex flex-col justify-between">
+              <div>
+                <div className="flex gap-1 mb-4 text-teal">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                </div>
+                <p className="text-base mb-6 leading-relaxed font-sans opacity-80">
+                  "{review.text}"
+                </p>
+              </div>
+              <div className="font-bold text-sm tracking-wider uppercase">— {review.author}</div>
             </div>
-            <p className="text-lg mb-6 leading-relaxed font-sans italic">
-              "Client depuis des années, Stéphane est très pro et sympathique. Les costumes reviennent toujours impeccables et les prix sont très corrects."
-            </p>
-            <div className="font-bold text-sm tracking-wider uppercase">— Jean M.</div>
-          </div>
-          
-          <div className="bg-white p-10 border border-teal/20 relative top-0 md:top-8">
-            <div className="flex gap-1 mb-6 text-teal">
-              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
-            </div>
-            <p className="text-lg mb-6 leading-relaxed font-sans italic">
-              "Le meilleur pressing d'Élancourt ! Les retouches sont parfaites, même sur des pièces compliquées. L'équipe est toujours accueillante."
-            </p>
-            <div className="font-bold text-sm tracking-wider uppercase">— Sylvie P.</div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
@@ -236,20 +249,32 @@ function Contact() {
                 </div>
                 <div>
                   <div className="font-bold mb-1 font-display tracking-wide">Adresse</div>
-                  <address className="not-italic opacity-80">
-                    Centre Commercial Près de C.C La Clef Saint Pierre<br/>
+                  <address className="not-italic opacity-80 leading-relaxed">
+                    Centre commercial La Clé Saint-Pierre<br/>
                     78990 Élancourt
                   </address>
                 </div>
               </div>
               
-              <div className="flex items-start gap-4">
-                <div className="mt-1">
-                  <Phone className="w-6 h-6 text-teal" />
+              <div className="grid sm:grid-cols-2 gap-8">
+                <div className="flex items-start gap-4">
+                  <div className="mt-1">
+                    <Phone className="w-6 h-6 text-teal" />
+                  </div>
+                  <div>
+                    <div className="font-bold mb-1 font-display tracking-wide">Téléphone</div>
+                    <a href="tel:+33760312424" className="text-teal font-medium hover:text-teal/80 transition-colors focus-ring">07 60 31 24 24</a>
+                  </div>
                 </div>
-                <div>
-                  <div className="font-bold mb-1 font-display tracking-wide">Téléphone</div>
-                  <a href="tel:+3313066XXXX" className="opacity-80 hover:text-teal transition-colors focus-ring">01 30 66 XX XX</a>
+
+                <div className="flex items-start gap-4">
+                  <div className="mt-1">
+                    <Mail className="w-6 h-6 text-teal" />
+                  </div>
+                  <div>
+                    <div className="font-bold mb-1 font-display tracking-wide">Email</div>
+                    <a href="mailto:pp.fialip@gmail.com" className="text-teal font-medium hover:text-teal/80 transition-colors focus-ring">pp.fialip@gmail.com</a>
+                  </div>
                 </div>
               </div>
               
@@ -258,13 +283,26 @@ function Contact() {
                   <Clock className="w-6 h-6 text-teal" />
                 </div>
                 <div>
-                  <div className="font-bold mb-1 font-display tracking-wide">Horaires (À titre indicatif)</div>
-                  <ul className="opacity-80 space-y-1">
-                    <li>Mardi - Vendredi : 9h00 - 19h00</li>
-                    <li>Samedi : 9h00 - 18h00</li>
-                    <li>Dimanche & Lundi : Fermé</li>
+                  <div className="font-bold mb-1 font-display tracking-wide">Horaires</div>
+                  <ul className="opacity-80 space-y-1 text-sm">
+                    <li><span className="inline-block w-20 font-medium">Lundi</span> 09:00 – 18:00</li>
+                    <li><span className="inline-block w-20 font-medium">Mardi</span> 09:00 – 19:00</li>
+                    <li><span className="inline-block w-20 font-medium">Mercredi</span> 09:00 – 19:00</li>
+                    <li><span className="inline-block w-20 font-medium">Jeudi</span> 09:00 – 19:00</li>
+                    <li><span className="inline-block w-20 font-medium">Vendredi</span> 09:00 – 19:00</li>
+                    <li><span className="inline-block w-20 font-medium">Samedi</span> 09:00 – 13:00, 14:00 – 18:00</li>
+                    <li><span className="inline-block w-20 font-medium">Dimanche</span> Fermé</li>
                   </ul>
                 </div>
+              </div>
+
+              <div className="pt-4 flex gap-4">
+                <a href="#" className="w-10 h-10 rounded-full bg-navy border border-teal text-white flex items-center justify-center hover:bg-teal transition-colors focus-ring" aria-label="Facebook">
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-navy border border-teal text-white flex items-center justify-center hover:bg-teal transition-colors focus-ring" aria-label="Instagram">
+                  <Instagram className="w-5 h-5" />
+                </a>
               </div>
             </div>
           </div>
@@ -278,7 +316,7 @@ function Contact() {
                </div>
                <h3 className="text-2xl font-bold mb-4 relative z-10">Une question ?</h3>
                <p className="font-sans opacity-80 mb-6 relative z-10">Passez directement en boutique pour nous montrer vos vêtements, nous vous conseillerons sur la meilleure méthode de nettoyage ou retouche.</p>
-               <a href="tel:+33130660000" className="focus-ring bg-teal text-white px-6 py-3 font-medium font-sans hover:bg-teal/90 transition-colors relative z-10">
+               <a href="tel:+33760312424" className="focus-ring bg-teal text-white px-6 py-3 font-medium font-sans hover:bg-teal/90 transition-colors relative z-10">
                   Nous appeler
                </a>
             </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Home from './components/Home';
+import EntreprisesPliPro from './components/EntreprisesPliPro';
 
 function App() {
   const [currentHash, setCurrentHash] = useState('');
@@ -8,7 +9,7 @@ function App() {
     const handleHashChange = () => {
       setCurrentHash(window.location.hash);
       // scroll to top on page change
-      if (window.location.hash === '#mentions-legales' || window.location.hash === '#confidentialite') {
+      if (window.location.hash === '#mentions-legales' || window.location.hash === '#confidentialite' || window.location.hash === '#pli-pro') {
          window.scrollTo(0, 0);
       }
     };
@@ -26,6 +27,8 @@ function App() {
         return <LegalMentions />;
       case '#confidentialite':
         return <PrivacyPolicy />;
+      case '#pli-pro':
+        return <EntreprisesPliPro />;
       default:
         // By default it's home, scrolling to anchors will work natively
         return <Home />;
@@ -68,7 +71,8 @@ function Navigation() {
         <nav className="hidden md:flex items-center gap-8">
           <a href="#services" className="text-sm font-medium tracking-wide border-b border-transparent text-navy hover:text-teal hover:border-teal transition-colors focus-ring">Pressing & Retouches</a>
           <a href="#tarifs" className="text-sm font-medium tracking-wide border-b border-transparent text-navy hover:text-teal hover:border-teal transition-colors focus-ring">Tarifs</a>
-          <a href="#contact" className="text-sm font-medium tracking-wide bg-navy text-white px-6 py-2 border border-navy hover:bg-white hover:text-navy transition-colors focus-ring">
+          <a href="#pli-pro" className="text-sm font-medium tracking-wide border border-teal text-teal hover:bg-teal hover:text-white px-3 py-1 rounded-full transition-colors focus-ring flex items-center gap-2">Pli Pro <span className="opacity-70 text-xs">Entreprises</span></a>
+          <a href="#contact" className="text-sm font-medium tracking-wide bg-navy text-white px-6 py-2 border border-navy hover:bg-white hover:text-navy transition-colors focus-ring rounded">
             Nous trouver
           </a>
         </nav>
@@ -96,6 +100,7 @@ function Navigation() {
           <nav className="flex flex-col px-6 py-4 gap-4">
             <a href="#services" onClick={() => setMenuOpen(false)} className="text-base font-medium text-navy py-2 border-b border-off-white">Nos Services</a>
             <a href="#tarifs" onClick={() => setMenuOpen(false)} className="text-base font-medium text-navy py-2 border-b border-off-white">Tarifs</a>
+            <a href="#pli-pro" onClick={() => setMenuOpen(false)} className="text-base font-medium text-teal py-2 border-b border-off-white">Offre Entreprises (Pli Pro)</a>
             <a href="#contact" onClick={() => setMenuOpen(false)} className="text-base font-medium text-navy py-2">Nous contacter</a>
           </nav>
         </div>
@@ -127,6 +132,7 @@ function Footer() {
               <li><a href="#" className="hover:text-white transition-colors focus-ring">Accueil</a></li>
               <li><a href="#services" className="hover:text-white transition-colors focus-ring">Services</a></li>
               <li><a href="#tarifs" className="hover:text-white transition-colors focus-ring">Tarifs</a></li>
+              <li><a href="#pli-pro" className="hover:text-white transition-colors focus-ring text-teal-light">Offre Entreprises</a></li>
               <li><a href="#contact" className="hover:text-white transition-colors focus-ring">Contact</a></li>
             </ul>
           </div>
@@ -157,8 +163,8 @@ function LegalMentions() {
           <section>
              <h2 className="text-2xl font-bold mt-8 mb-4 font-display">1. Éditeur du site</h2>
              <p>Le présent site est édité par : <strong>Stéphane Fialip (La Clé Saint-Pierre)</strong></p>
-             <p>Adresse : Centre Commercial Près de C.C La Clef Saint Pierre, 78990 Élancourt</p>
-             <p>Téléphone : 01 30 66 XX XX</p>
+             <p>Adresse : Centre commercial La Clé Saint-Pierre, 78990 Élancourt</p>
+             <p>Téléphone : 07 60 31 24 24</p>
           </section>
           
           <section>
