@@ -38,14 +38,14 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen bg-white text-brand-900 font-sans selection:bg-accent-500 selection:text-white">
       <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-brand-900 text-white px-4 py-2 z-50 rounded-md font-medium">Aller au contenu principal</a>
-      <Navigation />
+      <Navigation currentHash={currentHash} />
       {renderContent()}
       <Footer />
     </div>
   );
 }
 
-function Navigation() {
+function Navigation({ currentHash }: { currentHash: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -57,11 +57,14 @@ function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const isDarkHero = currentHash === '#pli-pro' && !scrolled;
+  const textColor = isDarkHero ? 'text-white' : 'text-navy';
+
   return (
     <header className={`fixed top-0 w-full z-40 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-4'}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center">
         <a href="#" className="flex items-center gap-2 group focus-ring p-1" onClick={() => { if(window.location.hash) window.location.hash = ''; window.scrollTo(0, 0); }}>
-          <span className="font-display font-semibold italic text-2xl tracking-tight text-navy group-hover:text-teal transition-colors flex flex-col leading-tight">
+          <span className={`font-display font-semibold italic text-2xl tracking-tight ${textColor} group-hover:text-teal transition-colors flex flex-col leading-tight`}>
             <span>La Clé</span>
             <span className="text-sm not-italic opacity-70 tracking-widest uppercase">Saint-Pierre</span>
           </span>
@@ -69,17 +72,21 @@ function Navigation() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#services" className="text-sm font-medium tracking-wide border-b border-transparent text-navy hover:text-teal hover:border-teal transition-colors focus-ring">Pressing & Retouches</a>
-          <a href="#tarifs" className="text-sm font-medium tracking-wide border-b border-transparent text-navy hover:text-teal hover:border-teal transition-colors focus-ring">Tarifs</a>
+          <a href="#services" className={`text-sm font-medium tracking-wide border-b border-transparent ${textColor} hover:text-teal hover:border-teal transition-colors focus-ring`}>Pressing & Retouches</a>
+          <a href="#tarifs" className={`text-sm font-medium tracking-wide border-b border-transparent ${textColor} hover:text-teal hover:border-teal transition-colors focus-ring`}>Tarifs</a>
           <a href="#pli-pro" className="text-sm font-medium tracking-wide border border-teal text-teal hover:bg-teal hover:text-white px-3 py-1 rounded-full transition-colors focus-ring flex items-center gap-2">Pli Pro <span className="opacity-70 text-xs">Entreprises</span></a>
-          <a href="#contact" className="text-sm font-medium tracking-wide bg-navy text-white px-6 py-2 border border-navy hover:bg-white hover:text-navy transition-colors focus-ring rounded">
+          <a href="#contact" className={`text-sm font-medium tracking-wide px-6 py-2 border transition-colors focus-ring rounded ${
+            isDarkHero 
+              ? 'bg-white text-navy border-white hover:bg-transparent hover:text-white' 
+              : 'bg-navy text-white border-navy hover:bg-white hover:text-navy'
+          }`}>
             Nous trouver
           </a>
         </nav>
 
         {/* Mobile menu button */}
         <button 
-          className="md:hidden p-2 text-navy focus-ring"
+          className={`md:hidden p-2 focus-ring ${textColor}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={menuOpen}
