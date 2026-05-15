@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import Home from './components/Home';
 import EntreprisesPliPro from './components/EntreprisesPliPro';
+import ServicePressing from './components/ServicePressing';
+import ServiceLaverie from './components/ServiceLaverie';
+import ServiceCouture from './components/ServiceCouture';
 
 function App() {
   const [currentHash, setCurrentHash] = useState('');
@@ -9,7 +12,7 @@ function App() {
     const handleHashChange = () => {
       setCurrentHash(window.location.hash);
       // scroll to top on page change
-      if (window.location.hash === '#mentions-legales' || window.location.hash === '#confidentialite' || window.location.hash === '#pli-pro') {
+      if (['#mentions-legales', '#confidentialite', '#pli-pro', '#service-pressing', '#service-laverie', '#service-couture'].includes(window.location.hash)) {
          window.scrollTo(0, 0);
       }
     };
@@ -29,6 +32,12 @@ function App() {
         return <PrivacyPolicy />;
       case '#pli-pro':
         return <EntreprisesPliPro />;
+      case '#service-pressing':
+        return <ServicePressing />;
+      case '#service-laverie':
+        return <ServiceLaverie />;
+      case '#service-couture':
+        return <ServiceCouture />;
       default:
         // By default it's home, scrolling to anchors will work natively
         return <Home />;

@@ -76,17 +76,20 @@ function Services() {
     {
       img: "https://i.ibb.co/twQZJM6N/1-logo-cintres-pressing.png",
       title: "Pressing",
-      description: "Chemises, costumes, pantalons, vestes, manteaux, doudounes"
+      description: "Chemises, costumes, pantalons, vestes, manteaux, doudounes",
+      link: "#service-pressing"
     },
     {
       img: "https://i.ibb.co/gMtbVSQ3/2-logo-machine-laverie.png",
       title: "Laverie",
-      description: "Lavage et séchage professionnels, toutes charges"
+      description: "Lavage et séchage professionnels, toutes charges",
+      link: "#service-laverie"
     },
     {
       img: "https://i.ibb.co/B5rb2Zyj/3-logo-aiguille-couture.png",
       title: "Couture",
-      description: "Retouches, réparations et confection sur mesure"
+      description: "Retouches, réparations et confection sur mesure",
+      link: "#service-couture"
     }
   ];
 
@@ -95,22 +98,26 @@ function Services() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <motion.div 
+            <motion.a 
               key={index}
+              href={service.link}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 sm:p-12 rounded-2xl shadow-sm border border-navy/5 flex flex-col items-center text-center group hover:shadow-md transition-shadow"
+              className="bg-white p-8 sm:p-12 rounded-2xl shadow-sm border border-navy/5 flex flex-col items-center text-center group hover:shadow-md hover:border-teal/30 transition-all"
             >
-              <div className="w-32 h-32 mb-6">
+              <div className="w-32 h-32 mb-6 group-hover:scale-105 transition-transform">
                 <img src={service.img} alt={service.title} className="w-full h-full object-contain" />
               </div>
-              <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-teal transition-colors">{service.title}</h3>
               <p className="opacity-70 leading-relaxed font-sans text-base">
                 {service.description}
               </p>
-            </motion.div>
+              <div className="mt-6 text-teal text-sm font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                En savoir plus
+              </div>
+            </motion.a>
           ))}
         </div>
       </div>
